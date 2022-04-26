@@ -1,4 +1,4 @@
-FROM ntno/ubuntu-build-base:0.0.11
+FROM ntno/ubuntu-build-base:1.0.0
 
 WORKDIR /usr/src/
 
