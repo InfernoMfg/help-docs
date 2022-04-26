@@ -1,0 +1,48 @@
+site_name: Inferno Docs
+repo_url: https://github.com/InfernoMfg/docs
+edit_uri: edit/main/docs/
+site_url: https://infernomfg.github.io/docs/
+copyright: © Inferno Mfg. Corp. 2021, All rights reserved
+site_author: ntno
+
+nav:
+    - Introduction: 'index.md'
+    - Guides: 'guides/index.md'
+    - Projects: projects/index.md
+    - Glossary: 'glossary.md'
+    - Troubleshooting: 'troubleshooting.md'
+    - Admins: 'admins.md'
+
+markdown_extensions:
+  - admonition
+  - pymdownx.tabbed
+  - meta
+  - attr_list
+  - toc:
+      permalink: true
+
+theme:
+  name: material
+  favicon: img/favicon.ico
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - toc.integrate
+  palette:
+    - scheme: inferno
+      media: "(prefers-color-scheme: light)"
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+      accent: red
+    - scheme: slate
+      media: "(prefers-color-scheme: dark)"
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+      primary: grey
+      accent: red
+
+extra_css:
+  - stylesheets/extra.css

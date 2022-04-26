@@ -1,0 +1,13 @@
+---
+vars: 
+  GHE_TOKEN_SSM_PATH: "/ghe/tokens/InfernoMfg-read-write"
+environments:
+  dev:
+    vars:
+      TF_VAR_env: "dev"
+    dcs:
+      us-east-1:
+        vars:
+          AWS_REGION: "us-east-1"
+          TF_VAR_region: "us-east-1"
+          TF_VAR_env: "dev"
