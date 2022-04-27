@@ -54,11 +54,13 @@ gh-logout:
 	gh auth logout && \
 	gh auth status || true
 
+prompt-for-passphrase:
+	@echo ">>>> enter private key passphrase when prompted"
 
 deploy: 
 	@$(MAKE) clean-docs 
 	@$(MAKE) build
-	@echo ">>>> enter private key passphrase when prompted"
+	@$(MAKE) prompt-for-passphrase
 	@eval `ssh-agent -s` && ssh-add /root/.ssh/id_ed25519 && mkdocs gh-deploy && $(MAKE) manually-deploy-404-page
 
 manually-deploy-404-page: 
@@ -71,7 +73,7 @@ manually-deploy-404-page:
 	git branch --set-upstream-to origin/$(gh-deployment-branch)
 	git add site/404.html
 	git commit -m "override 404 page"
-	git push -f
+	git push
 
 clean-docs:
 	@rm -rf site/
