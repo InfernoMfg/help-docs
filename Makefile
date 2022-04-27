@@ -22,6 +22,7 @@ ifeq ($(platform), "windows")
 	export AWS_HOME_FOR_DOCKER="$(shell echo "$(home_dir)/.aws" | sed -E 's/cygdrive/\//g')" && \
 	export SSH_HOME_FOR_DOCKER="$(shell echo "$(home_dir)/.ssh" | sed -E 's/cygdrive/\//g')" && \
 	export CURR_DIR_FOR_DOCKER="$(shell echo $(curr_dir) | sed -E 's/cygdrive/\//g')" && \
+	export DOCKER_FROM_WINDOWS="1" && \
 	docker-compose -f $(platform).yml run --rm $(platform)
 endif
 ifeq ($(platform), "unix")
@@ -44,12 +45,22 @@ build:
 prompt-for-passphrase:
 	@echo ">>>>>>>>>>>>>>>>>>>> enter private key passphrase when prompted"
 
-deploy: 
+deploy:
+	$(MAKE) fix-ssh-permissions
 	@$(MAKE) clean-docs 
 	@$(MAKE) build
 	@$(MAKE) prompt-for-passphrase
 	@eval `ssh-agent -s` && ssh-add /root/.ssh/id_ed25519 && mkdocs gh-deploy
-	
+
+fix-ssh-permissions:
+ifdef DOCKER_FROM_WINDOWS
+	chmod 0700 /root/.ssh/
+	chmod 0600 /root/.ssh/id_ed25519
+	chmod 0600 /root/.ssh/config
+	chmod 0644 /root/.ssh/id_ed25519.pub
+	chmod 0644 /root/.ssh/known_hosts
+endif
+
 clean-docs:
 	@rm -rf site/
 
