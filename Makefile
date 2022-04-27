@@ -66,9 +66,10 @@ manually-deploy-404-page:
 	git fetch --all
 	git checkout $(gh-deployment-branch)
 	git checkout gh-deployment site/404/index.html 
+	mv site/404/index.html site/404.html
 	git config user.name "$$GITHUB_PERSONAL_USERNAME"
 	git config user.email "$$GITHUB_PERSONAL_USERNAME@users.noreply.github.com"
-	git add site/404/index.html
+	git add site/404.html
 	git commit -m "override 404 page"
 	git push -f
 
