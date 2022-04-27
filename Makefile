@@ -36,7 +36,7 @@ serve:
 	docker-compose run --service-ports local_development_server
 
 ##########################################################################################
-# run build/deploy commands from docker container
+# run build/deploy/gh commands from docker container
 ##########################################################################################
 build:
 	@rm -f ./docs/robots.txt
@@ -44,13 +44,25 @@ build:
 	@pip install -r ./requirements.txt
 	@mkdocs build
 
+gh-auth: check-env 
+	eval "$$(buildenv -e $(env) -d $(region))" && \
+	export GHE_TOKEN=`aws ssm get-parameters --with-decrypt --name "$$GHE_TOKEN_SSM_PATH"  | jq -r .Parameters[0].Value` && \
+	echo "$$GHE_TOKEN" | gh auth login --with-token && \
+	gh auth status
+
+gh-logout: 
+	gh auth logout && \
+	gh auth status || true
+
+
 deploy: 
 	@$(MAKE) clean-docs 
 	@$(MAKE) build
 	@echo ">>>> enter private key passphrase when prompted"
 	@eval `ssh-agent -s` && ssh-add /root/.ssh/id_ed25519 && mkdocs gh-deploy && $(MAKE) manually-deploy-404-page
 
-manually-deploy-404-page:
+manually-deploy-404-page: 
+	$(MAKE) gh-auth
 	git checkout gh-pages
 	git checkout gh-deployment site/404/index.html 
 	git add site/404/index.html
