@@ -42,7 +42,7 @@ build:
 	@curl https://raw.githubusercontent.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker/master/robots.txt/robots.txt --output ./docs/robots.txt
 	@pip install -r ./requirements.txt
 	@mkdocs build
-	@cp site/error/index.html site/404.html
+# @cp site/error/index.html site/404.html
 
 deploy: 
 	@$(MAKE) clean-docs 
