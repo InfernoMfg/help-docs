@@ -43,7 +43,7 @@ build:
 	@mkdocs build
 
 prompt-for-passphrase:
-	@echo ">>>> enter private key passphrase when prompted"
+	@echo ">>>>>>>>>>>>>>>>>>>> enter private key passphrase when prompted"
 
 deploy: 
 	@$(MAKE) clean-docs 
@@ -51,20 +51,6 @@ deploy:
 	@$(MAKE) prompt-for-passphrase
 	@eval `ssh-agent -s` && ssh-add /root/.ssh/id_ed25519 && mkdocs gh-deploy
 	
-#  && $(MAKE) manually-deploy-404-page
-
-# manually-deploy-404-page: 
-# 	git fetch --all
-# 	git checkout $(gh-deployment-branch)
-# 	git checkout origin/gh-deployment -- site/404/index.html 
-# 	cp site/404/index.html 404.html
-# 	git config user.name "$$GITHUB_PERSONAL_USERNAME"
-# 	git config user.email "$$GITHUB_PERSONAL_USERNAME@users.noreply.github.com"
-# 	git branch --set-upstream-to origin/$(gh-deployment-branch)
-# 	git add 404.html
-# 	git commit -m "override 404 page"
-# 	git push
-
 clean-docs:
 	@rm -rf site/
 
