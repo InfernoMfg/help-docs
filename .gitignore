@@ -1,2 +1,2 @@
 site/*
-!site/404/index.html
+!./site/404/index.html
