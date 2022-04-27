@@ -39,20 +39,8 @@ serve:
 # run build/deploy/gh commands from docker container
 ##########################################################################################
 build:
-	@rm -f ./docs/robots.txt
-	@curl https://raw.githubusercontent.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker/master/robots.txt/robots.txt --output ./docs/robots.txt
 	@pip install -r ./requirements.txt
 	@mkdocs build
-
-# gh-auth: check-env 
-# 	eval "$$(buildenv -e $(env) -d $(region))" && \
-# 	export GHE_TOKEN=`aws ssm get-parameters --with-decrypt --name "$$GHE_TOKEN_SSM_PATH"  | jq -r .Parameters[0].Value` && \
-# 	echo "$$GHE_TOKEN" | gh auth login --with-token && \
-# 	gh auth status
-
-# gh-logout: 
-# 	gh auth logout && \
-# 	gh auth status || true
 
 prompt-for-passphrase:
 	@echo ">>>> enter private key passphrase when prompted"
