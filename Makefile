@@ -63,8 +63,8 @@ deploy:
 
 manually-deploy-404-page: 
 	$(MAKE) gh-auth
-	git fetch origin/$(gh-deployment-branch)
-	git checkout origin/$(gh-deployment-branch)
+	git fetch --all
+	git checkout $(gh-deployment-branch)
 	git checkout gh-deployment site/404/index.html 
 	git config user.name "$$GITHUB_PERSONAL_USERNAME"
 	git config user.email "$$GITHUB_PERSONAL_USERNAME@users.noreply.github.com"
