@@ -48,7 +48,7 @@ deploy:
 	@$(MAKE) clean-docs 
 	@$(MAKE) build
 	@echo ">>>> enter private key passphrase when prompted"
-	@eval `ssh-agent -s` && ssh-add /root/.ssh/id_ed25519 && mkdocs gh-deploy
+	@eval `ssh-agent -s` && ssh-add /root/.ssh/id_ed25519 && mkdocs gh-deploy && $(MAKE) manually-deploy-404-page
 
 manually-deploy-404-page:
 	git checkout gh-pages
