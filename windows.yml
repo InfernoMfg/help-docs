@@ -4,10 +4,15 @@ services:
     image: ntno/ubuntu-build-base:1.0.0
     restart: "no"    
     volumes:
-      - ${AWS_HOME_FOR_DOCKER}:/root/.aws:ro     #ro for read only
+      - ${AWS_HOME_FOR_DOCKER}:/root/.aws:ro                                #ro for read only
+      - ${SSH_HOME_FOR_DOCKER}/id_ed25519:/root/.ssh/id_ed25519:ro          #ro for read only 
+      - ${SSH_HOME_FOR_DOCKER}/id_ed25519.pub:/root/.ssh/id_ed25519.pub:ro  #ro for read only  
+      - ${SSH_HOME_FOR_DOCKER}/known_hosts:/root/.ssh/known_hosts:ro        #ro for read only  
+      - ./ssh-config:/root/.ssh/config:ro                                   #ro for read only
       - ${CURR_DIR_FOR_DOCKER}:/usr/src
     environment: 
       AWS_HOME_FOR_DOCKER: "${AWS_HOME_FOR_DOCKER}"
+      SSH_HOME_FOR_DOCKER: "${SSH_HOME_FOR_DOCKER}"
       CURR_DIR_FOR_DOCKER: "${CURR_DIR_FOR_DOCKER}"
       AWS_PROFILE: inferno-svc
       AWS_SHARED_CREDENTIALS_FILE: /root/.aws/credentials

@@ -4,7 +4,11 @@ services:
     image: ntno/ubuntu-build-base:1.0.0
     restart: "no"    
     volumes:
-      - ~/.aws/:/root/.aws:ro    #ro for read only
+      - ~/.aws/:/root/.aws:ro                               #ro for read only
+      - ~/.ssh/id_ed25519:/root/.ssh/id_ed25519:ro          #ro for read only 
+      - ~/.ssh/id_ed25519.pub:/root/.ssh/id_ed25519.pub:ro  #ro for read only  
+      - ~/.ssh/known_hosts:/root/.ssh/known_hosts:ro        #ro for read only  
+      - ./ssh-config:/root/.ssh/config:ro                   #ro for read only
       - $PWD:/usr/src
     environment:
       AWS_PROFILE: inferno-svc
