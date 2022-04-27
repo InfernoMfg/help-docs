@@ -13,11 +13,14 @@ else
 	platform := "unix"
 endif
 
-
+##########################################################################################
+# run docker/serve/stop commands from local machine
+##########################################################################################
 docker: check-platform
 ifeq ($(platform), "windows")
 	@git config core.filemode false
 	export AWS_HOME_FOR_DOCKER="$(shell echo "$(home_dir)/.aws" | sed -E 's/cygdrive/\//g')" && \
+	export SSH_HOME_FOR_DOCKER="$(shell echo "$(home_dir)/.ssh" | sed -E 's/cygdrive/\//g')" && \
 	export CURR_DIR_FOR_DOCKER="$(shell echo $(curr_dir) | sed -E 's/cygdrive/\//g')" && \
 	docker-compose -f $(platform).yml run --rm $(platform)
 endif
@@ -31,17 +34,25 @@ stop:
 serve:
 	docker-compose run --service-ports local_development_server
 
-#see article on passing arguments to overridden entrypoint:
-#https://oprearocks.medium.com/how-to-properly-override-the-entrypoint-using-docker-run-2e081e5feb9d
+##########################################################################################
+# run build/deploy commands from docker container
+##########################################################################################
 build:
-	docker-compose build local_development_server
-	rm -f ./docs/robots.txt
-	docker-compose run --entrypoint "curl" local_development_server https://raw.githubusercontent.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker/master/robots.txt/robots.txt --output ./docs/robots.txt
-	docker-compose run --entrypoint "mkdocs" local_development_server build
-	cp site/error/index.html site/404.html
+	@rm -f ./docs/robots.txt
+	@curl https://raw.githubusercontent.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker/master/robots.txt/robots.txt --output ./docs/robots.txt
+	@pip install -r ./requirements.txt
+	@mkdocs build
+	@cp site/error/index.html site/404.html
+
+deploy: 
+	@$(MAKE) clean-docs 
+	@$(MAKE) build
+	@echo ">>>> enter private key passphrase when prompted"
+	@eval `ssh-agent -s` && ssh-add /root/.ssh/id_ed25519 && mkdocs gh-deploy
 	
+
 clean-docs:
-	rm -rf site/
+	@rm -rf site/
 
 
 ##########################################################################################
