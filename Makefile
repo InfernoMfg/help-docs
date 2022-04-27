@@ -44,7 +44,8 @@ build:
 prompt-for-passphrase:
 	@echo ">>>>>>>>>>>>>>>>>>>> enter private key passphrase when prompted"
 
-deploy: 
+deploy:
+	chmod 600 /root/.ssh/
 	@$(MAKE) clean-docs 
 	@$(MAKE) build
 	@$(MAKE) prompt-for-passphrase
