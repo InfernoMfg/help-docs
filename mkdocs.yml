@@ -6,9 +6,10 @@ copyright: © Inferno Mfg. Corp. 2022, All rights reserved
 site_author: ntno
 
 nav:
-    - Home: 'index.md'
-    - 'Gage Selector': 'gage-selector.md'
-    - 'Datasheet Wizard': 'datasheet-wizard.md'
+    - About: 'index.md'
+    - Contact: 'contact.md'
+    - 'Gage Selector Help': 'gage-selector.md'
+    - 'Datasheet Wizard Help': 'datasheet-wizard.md'
     
 markdown_extensions:
   - admonition
@@ -26,20 +27,4 @@ theme:
     - navigation.tabs.sticky
     - navigation.sections
     - toc.integrate
-  palette:
-    - scheme: inferno
-      media: "(prefers-color-scheme: light)"
-      toggle:
-        icon: material/toggle-switch-off-outline
-        name: Switch to dark mode
-      accent: red
-    - scheme: slate
-      media: "(prefers-color-scheme: dark)"
-      toggle:
-        icon: material/toggle-switch
-        name: Switch to light mode
-      primary: grey
-      accent: red
-
-# extra_css:
-#   - stylesheets/extra.css
+ 
