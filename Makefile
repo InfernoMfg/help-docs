@@ -6,6 +6,7 @@ curr_dir := $(shell pwd)
 env=dev
 region=us-east-1
 app-name=help-docs
+gh-deployment-branch=gh-pages
 
 ifeq (0, $(in_cygwin))
 	platform := "windows"
@@ -42,14 +43,19 @@ build:
 	@curl https://raw.githubusercontent.com/mitchellkrogza/nginx-ultimate-bad-bot-blocker/master/robots.txt/robots.txt --output ./docs/robots.txt
 	@pip install -r ./requirements.txt
 	@mkdocs build
-# @cp site/error/index.html site/404.html
 
 deploy: 
 	@$(MAKE) clean-docs 
 	@$(MAKE) build
 	@echo ">>>> enter private key passphrase when prompted"
 	@eval `ssh-agent -s` && ssh-add /root/.ssh/id_ed25519 && mkdocs gh-deploy
-	
+
+manually-deploy-404-page:
+	git checkout gh-pages
+	git checkout gh-deployment site/404/index.html 
+	git add site/404/index.html
+	git commit -m "override 404 page"
+	git push
 
 clean-docs:
 	@rm -rf site/
