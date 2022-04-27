@@ -1,3 +1,4 @@
 site/*
+!site/404.html
 !site/404/
 !site/404/index.html
