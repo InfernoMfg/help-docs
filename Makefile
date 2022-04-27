@@ -6,7 +6,6 @@ curr_dir := $(shell pwd)
 env=dev
 region=us-east-1
 app-name=help-docs
-gh-deployment-branch=gh-pages
 
 ifeq (0, $(in_cygwin))
 	platform := "windows"
@@ -36,7 +35,7 @@ serve:
 	docker-compose run --service-ports local_development_server
 
 ##########################################################################################
-# run build/deploy/gh commands from docker container
+# run build/deploy commands from docker container
 ##########################################################################################
 build:
 	@pip install -r ./requirements.txt
