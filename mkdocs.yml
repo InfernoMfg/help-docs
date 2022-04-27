@@ -7,7 +7,9 @@ site_author: ntno
 
 nav:
     - Home: 'index.md'
-
+    - 'Gage Selector': 'gage-selector.md'
+    - 'Datasheet Wizard': 'datasheet-wizard.md'
+    
 markdown_extensions:
   - admonition
   - pymdownx.tabbed
