@@ -27,4 +27,6 @@ theme:
     - navigation.tabs.sticky
     - navigation.sections
     - toc.integrate
- 
+  palette:
+    primary: grey
+    accent: red
