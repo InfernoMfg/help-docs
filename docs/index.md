@@ -1,3 +1,10 @@
+---
+hide:
+  - navigation
+  - toc
+---
+
+
 Welcome to the Inferno Mfg Corp Help Site.  Here you can find additional information on how to use our customer facing web applications.
 
 ### [Gage Selector](./gage-selector.md)  
