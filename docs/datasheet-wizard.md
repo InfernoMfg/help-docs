@@ -15,8 +15,8 @@ To change the Level Gage Style you will need to click on a different Gage Model 
 
 - For End Connected Level Gage with Single Union Valves, pick from options 1, 2, 3
 - For End Connected Level Gage with Double Union Valves, pick from options 4, 5, 6
-- For Close Hookup Level Gage, pick from options 7, 8, 9
-- For Close Hookup Level Gage, pick from options 10, 11, 12 
+- For Side Connected Close Hookup Level Gage, pick from options 7, 8, 9
+- For Back Connected Close Hookup Level Gage, pick from options 10, 11, 12 
 
 ## **Tips**
 - Use a Chrome web browser for best viewing experience.
