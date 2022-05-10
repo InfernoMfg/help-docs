@@ -35,6 +35,12 @@ stop:
 serve:
 	docker-compose run --service-ports local_development_server
 
+open-local:
+	open http://0.0.0.0:7000/help-docs/
+
+open:
+	open https://infernomfg.github.io/help-docs/
+
 ##########################################################################################
 # run build/deploy commands from docker container
 ##########################################################################################
