@@ -10,7 +10,8 @@ nav:
     - Contact: 'contact.md'
     - 'Gage Selector Help': 'gage-selector.md'
     - 'Datasheet Wizard Help': 'datasheet-wizard.md'
-    
+    - Glossary: 'glossary.md'
+
 markdown_extensions:
   - admonition
   - pymdownx.tabbed
