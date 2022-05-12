@@ -1,3 +1,7 @@
+## **Tips**
+- Press “Reset” when starting a new project.  This will clear any previous selections.
+- Use a Chrome web browser for best viewing experience.
+
 ## **FAQ**
 
 ### **What if I don't need the longest Gage Size?**
@@ -15,6 +19,6 @@ You should see a dropdown box labeled "Optional Override".  Each option displays
 <figcaption>Gage Size 49 Override Selected</figcaption>
 </figure>
 
-## **Tips**
-- Press “Reset” when starting a new project.  This will clear any previous selections.
-- Use a Chrome web browser for best viewing experience.
+### **How do I generate a data sheet?**
+Once you have made your sizing selection you should see a variety of Level Gage model numbers available in S3 and S4.  Click the Level Gage model you are interested in.  You will be directed to the Datasheet Wizard application.  In this application you will be asked a few more questions to finalize the datasheet.  Once you have answered the questions you will be able to print your finalized datasheet.
+
